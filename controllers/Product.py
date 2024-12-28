@@ -19,6 +19,10 @@ def list_all():
     per_page = request.args.get('per_page', default=5, type=int)
     return products_schema.jsonify(Product.list_all(page, per_page))
 
+def list_specific():
+    product_id = request.args.get('id')
+    return product_schema.jsonify(Product.list_specific(product_id))
+
 def update_product():
     product_id = request.args.get('id')
     product_data = product_schema.load(request.json)

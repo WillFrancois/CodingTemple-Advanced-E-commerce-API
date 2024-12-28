@@ -19,6 +19,11 @@ def list_all():
     return customers_schema.jsonify(Customer.list_all())
 
 @role_required("admin")
+def list_specific():
+    customer_id = request.args.get('id')
+    return customer_schema.jsonify(Customer.list_specific(customer_id))
+
+@role_required("admin")
 def update_customer():
     customer_id = request.args.get('id')
     customer_data = customer_schema.load(request.json)

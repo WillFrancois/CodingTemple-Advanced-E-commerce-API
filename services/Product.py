@@ -19,6 +19,12 @@ def list_all(page, per_page):
             all_prod = db.paginate(select(Product), page=page, per_page=per_page)
             return all_prod
 
+def list_specific(product_id):
+    with Session(db.engine) as session:
+        with session.begin():
+            result = Product.query.filter_by(id=product_id).first()
+            return result
+
 def update_product(product_data, product_id):
     with Session(db.engine) as session:
         with session.begin():

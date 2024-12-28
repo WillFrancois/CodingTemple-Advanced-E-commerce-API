@@ -19,6 +19,12 @@ def list_all():
             all_cus = Customer.query.all()
             return all_cus
 
+def list_specific(customer_id):
+    with Session(db.engine) as session:
+        with session.begin():
+            result = Customer.query.filter_by(id=customer_id).first()
+            return result
+
 def customer_lifetime_value():
     with Session(db.engine) as session:
         with session.begin():
