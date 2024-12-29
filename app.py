@@ -8,6 +8,7 @@ from models.models import db
 from schema import ma
 
 from routes.Customer import customer_blueprint
+from routes.CustomerAccount import customer_account_blueprint
 from routes.Employee import employee_blueprint
 from routes.Product import product_blueprint
 from routes.Order import order_blueprint
@@ -41,6 +42,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache'})
 
 def blueprints(app):
     app.register_blueprint(customer_blueprint, url_prefix='/customers')
+    app.register_blueprint(customer_account_blueprint, url_prefix='/customeraccounts')
     app.register_blueprint(employee_blueprint, url_prefix='/employees')
     app.register_blueprint(product_blueprint, url_prefix='/products')
     app.register_blueprint(order_blueprint, url_prefix='/orders')

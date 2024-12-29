@@ -26,7 +26,10 @@ def list_specific():
 @role_required("admin")
 def update_customer():
     customer_id = request.args.get('id')
-    customer_data = customer_schema.load(request.json)
+    try:
+        customer_data = customer_schema.load(request.json)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
     return customer_schema.jsonify(Customer.update_customer(customer_data, customer_id))
 
 @role_required("admin")
